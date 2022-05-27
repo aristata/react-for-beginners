@@ -10,17 +10,23 @@ function App() {
       return;
     }
     console.log(toDo);
-    setToDos((currentArray) => [toDo, ...currentArray]);
+    setToDos((currentArray) => [...currentArray, toDo]);
     setToDo("");
   };
   return (
-    <div>
+    <>
       <h1>My To Dos ({toDos.length})</h1>
       <form onSubmit={onSubmit}>
         <input type={"text"} placeholder={"Write your to do..."} value={toDo} onChange={onChange}/>
         <button>Add To Do</button>
       </form>
-    </div>
+      <hr/>
+      <ul>
+        {toDos.map((toDo, index) => {
+          return <li key={`toDo ${index}`}>{toDo}</li>
+        })}
+      </ul>
+    </>
   );
 }
 
